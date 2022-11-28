@@ -10,17 +10,12 @@ class Solution {
           for(int i=0;i<str.length();i++){
 
               if(arr[str.charAt(i)-'a']==1){
-                    ans=i;
-                    break;
+                    return i;
               }
           }
-
-         if(ans==-1)
-            return -1;
-         else{
-            return ans; 
+        return -1;
+         
         }
         
     }
     
-}
