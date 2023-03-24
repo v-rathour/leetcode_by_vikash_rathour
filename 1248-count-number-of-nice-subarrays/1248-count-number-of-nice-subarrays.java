@@ -5,15 +5,20 @@ class Solution {
     public int atMost(int[] nums, int k) {
         if(k < 0)return 0;
 
-        int start = 0, n = nums.length;
+        int si = 0, n = nums.length;
         int ans = 0;
         int countOdd = 0;
-        for(int end = 0; end < n; end++) {
-            countOdd += nums[end]%2;
-            while(countOdd > k) {
-                countOdd -= nums[start++]%2;
+        int ei=0;
+        while(ei<n){
+            countOdd +=nums[ei]%2;
+            
+            while(countOdd>k){
+                countOdd -=nums[si++]%2;
+                
             }
-            ans += end-start +1;
+            
+            ans +=(ei-si+1);
+            ei++;
         }
         
         return ans;
