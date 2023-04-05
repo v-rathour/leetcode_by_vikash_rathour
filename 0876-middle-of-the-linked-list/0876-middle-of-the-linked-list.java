@@ -10,34 +10,19 @@
  */
 class Solution {
     public ListNode middleNode(ListNode head) {
-        if(head.next==null){
+        if(head.next==null || head==null){
             return head;
         }
         
-        int size=0;
-        ListNode curr=head;
-        while(curr!=null){
-            
-            size++;
-            curr=curr.next;
-            
-        }
-        size /=2;
-        int j=0;
+        ListNode turtle=head;
+        ListNode hare=head;
         
-        curr=head;
-        
-        ListNode pre=curr;
-        while(j<size+1){
-            pre=curr;
-            curr=curr.next;
-            j++;
+        while(hare!=null && hare.next!=null){
+            turtle=turtle.next;
+            hare=hare.next.next;
         }
         
-       ListNode NewNode=new ListNode(0);
-       NewNode.next=pre;
-       NewNode=pre;
-       return NewNode;
+        return turtle;
         
     }
 }
