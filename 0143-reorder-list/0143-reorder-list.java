@@ -43,30 +43,22 @@ class Solution {
         }
         Collections.reverse(list);
         ListNode NewNode=head;
+        
+        int i=1;
+        while(i<(n-k)){
+            ListNode Next=NewNode.next;
+            ListNode current=new ListNode(list.get(0));
+            current.next=Next;
+            NewNode.next=current;
+            list.remove(Integer.valueOf(list.get(0)));
+            NewNode=Next;
+            i++;
+        }
+        
         if(n%2==0){
-            int i=1;
-            while(i<(n-k)){
-               ListNode Next=NewNode.next;
-                ListNode current=new ListNode(list.get(0));
-                current.next=Next;
-                NewNode.next=current;
-                list.remove(Integer.valueOf(list.get(0)));
-                NewNode=Next;
-                i++;
-            }
             NewNode.next.next=null;
         }
         else{
-            int i=1;
-            while(i<(n-k)){
-               ListNode Next=NewNode.next;
-                ListNode current=new ListNode(list.get(0));
-                current.next=Next;
-                NewNode.next=current;
-                list.remove(Integer.valueOf(list.get(0)));
-                NewNode=Next;
-                i++;
-            }
             NewNode.next=null;
         }
         
