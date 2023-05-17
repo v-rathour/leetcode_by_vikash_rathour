@@ -19,7 +19,7 @@ class Solution {
             curr=curr.next;
         }
         
-        List<Integer> list=new ArrayList<>();
+        List<ListNode> list=new ArrayList<>();
         ListNode currentNode=head;
         int k=n/2;
         if(n%2==0){
@@ -38,21 +38,22 @@ class Solution {
         }
         
         while(currentNode!=null){
-            list.add(currentNode.val);
+            list.add(currentNode);
             currentNode=currentNode.next;
         }
         Collections.reverse(list);
         ListNode NewNode=head;
         
         int i=1;
+        int j=0;
         while(i<(n-k)){
             ListNode Next=NewNode.next;
-            ListNode current=new ListNode(list.get(0));
+            ListNode current=list.get(j);
             current.next=Next;
             NewNode.next=current;
-            list.remove(Integer.valueOf(list.get(0)));
             NewNode=Next;
             i++;
+            j++;
         }
         
         if(n%2==0){
