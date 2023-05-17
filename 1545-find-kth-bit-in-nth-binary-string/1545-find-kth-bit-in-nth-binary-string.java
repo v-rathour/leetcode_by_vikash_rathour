@@ -3,8 +3,11 @@ class Solution {
         String ans="0";
         int j=1;
         while(j<n){
+            
             StringBuilder result = new StringBuilder();
+            
             for (int i = 0; i < ans.length(); i++) {
+                
                 if (ans.charAt(i) == '0') {
                       result.append('1');
                  } else {
@@ -12,6 +15,7 @@ class Solution {
                  }
             }
             ans=ans+'1'+result.reverse().toString();
+            
             if(ans.length()>=k){
                 break;
             }
