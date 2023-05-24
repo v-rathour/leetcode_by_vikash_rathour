@@ -12,7 +12,7 @@ class Solution {
                  str +=s.charAt(i);
             }
         }
-        System.out.println(str);
+
         if(palindrom(str)){
             return true;
         }
