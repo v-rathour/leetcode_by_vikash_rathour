@@ -27,15 +27,6 @@ class Solution {
             return false;
         }
         
-        boolean leftB=BinaryTree(node1.left,node2.left);
-        if(leftB==false){
-            return false;
-        }
-        boolean rightB=BinaryTree(node1.right,node2.right);
-        if(rightB==false){
-            return false;
-        }
-        
-        return true;
+        return BinaryTree(node1.left,node2.left) && BinaryTree(node1.right,node2.right);
     }
 }
