@@ -27,7 +27,6 @@ class Solution {
         while(!pq.isEmpty()){
             
             Pair rem = pq.remove();
-            System.out.println(rem.value+" "+rem.index);
             
             if(!visited[rem.index]){
                 
