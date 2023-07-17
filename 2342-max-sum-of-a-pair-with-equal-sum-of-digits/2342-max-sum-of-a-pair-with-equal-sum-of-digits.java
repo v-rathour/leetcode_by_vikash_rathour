@@ -6,6 +6,7 @@ class Solution {
         for(int i=0;i<nums.length;i++){
             int copy = nums[i];
             int sum = 0;
+            // fint the sum of the all digit in number
             while(copy != 0){
                 
                 int rem = copy%10;
@@ -14,6 +15,7 @@ class Solution {
                 
             }
             
+            // fint the element with equal sum
             if(map.containsKey(sum) == false){
                 List<Integer> list = new ArrayList<>();
                 list.add(nums[i]);
@@ -35,9 +37,9 @@ class Solution {
             int sum = -1;
             
             if(list.size()>=2){
-                sum = 0;
+                
                 Collections.sort(list);
-                sum += (list.get(list.size()-2)+list.get(list.size()-1));
+                sum += (list.get(list.size()-2)+list.get(list.size()-1))+1;
             }
             
             ans = Math.max(ans,sum);
