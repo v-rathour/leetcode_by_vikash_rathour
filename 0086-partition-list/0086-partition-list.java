@@ -15,9 +15,12 @@ class Solution {
         }
         ListNode NewList1=new ListNode(-1);
         ListNode NewList2=new ListNode(-1);
+        
         ListNode NewNode1=NewList1;
         ListNode NewNode2=NewList2;
+        
         ListNode currentNode=head;
+        
         while(currentNode!=null){
             if(currentNode.val<x){
                 NewNode1.next=currentNode;
@@ -30,8 +33,10 @@ class Solution {
             }
             currentNode=currentNode.next;
         }
+        
         NewNode1.next=null;
         NewNode2.next=null;
+        
         NewNode1.next=NewList2.next;
         return NewList1.next;
     }
