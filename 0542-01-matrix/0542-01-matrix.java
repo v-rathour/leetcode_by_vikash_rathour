@@ -10,7 +10,9 @@ class Solution {
             this.col=col;
         }
     }
+    
     int bfs[][]={{1,0},{0,1},{-1,0},{0,-1}};
+    
     public int[][] updateMatrix(int[][] mat) {
         
          LinkedList<Pair> queue=new LinkedList<>();
@@ -31,12 +33,15 @@ class Solution {
             Pair rem=queue.removeFirst();
             
             for(int i=0;i<bfs.length;i++){
+                
                 int newrow  = rem.row+bfs[i][0];
                 int newcol = rem.col+bfs[i][1];
                 
                 if(newrow>=0  && newrow<mat.length && newcol>=0 && newcol<mat[0].length 
                    && mat[newrow][newcol]<0){
+                    
                     mat[newrow][newcol]=mat[rem.row][rem.col]+1;
+                    
                     queue.add(new Pair(newrow,newcol));
                 }
             }
