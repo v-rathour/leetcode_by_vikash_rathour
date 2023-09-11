@@ -18,9 +18,11 @@ class Solution {
                 map.put(groupSizes[i],list);
             }
             
+            
+            
             if(groupSizes[i] == map.get(groupSizes[i]).size()){
-                answer.add(map.get(groupSizes[i]));
-                map.remove(groupSizes[i]);
+                answer.add(map.remove(groupSizes[i]));
+                
             }
         }
         
