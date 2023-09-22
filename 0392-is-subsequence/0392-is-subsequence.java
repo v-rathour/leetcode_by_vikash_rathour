@@ -13,7 +13,7 @@ class Solution {
             
              char ch = t.charAt(i);
             
-             if( s.length() >= 1 && s.charAt(idx) == ch){
+             if(s.charAt(idx) == ch){
                  idx++;
                  if(idx == s.length()){
                      flag = true;
