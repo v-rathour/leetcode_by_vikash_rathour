@@ -18,6 +18,7 @@ class Solution {
         if(root==null){
              return new ArrayList<>();
         }
+        
         Queue<TreeNode> mq=new ArrayDeque<>();
         mq.add(root);
         List<Integer> result=new ArrayList<>();
