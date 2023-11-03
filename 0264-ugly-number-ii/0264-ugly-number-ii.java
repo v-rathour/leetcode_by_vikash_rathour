@@ -31,11 +31,6 @@ class Solution {
             k++;
         }
         
-        for(int i = 0;i<n;i++){
-            System.out.print(dp[i]+" ");
-        }
-        System.out.println();
-        
         return dp[n-1];
     }
 }
