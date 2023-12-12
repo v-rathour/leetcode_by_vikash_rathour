@@ -1,16 +1,16 @@
 class Solution {
     public int maxProduct(int[] nums) {
-        
-        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
-        
-        for(int i=0;i<nums.length;i++){
-            pq.add(nums[i]);
+        int biggest = 0;
+        int secondBiggest = 0;
+        for (int num : nums) {
+            if (num > biggest) {
+                secondBiggest = biggest;
+                biggest = num;
+            } else {
+                secondBiggest = Math.max(secondBiggest, num);
+            }
         }
         
-        int n = pq.remove();
-        int m = pq.remove();
-        
-        return (n-1)*(m-1);
-        
+        return (biggest - 1) * (secondBiggest - 1);
     }
 }
