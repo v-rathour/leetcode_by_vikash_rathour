@@ -1,26 +1,20 @@
 class Solution {
+    
     public int rob(int[] nums) {
-        int n = nums.length; 
-        int dp[] = new int[n];
-        
-        if(n == 1){
-            return nums[0];
+        int[] dp = new int[nums.length];
+        int ans = Integer.MIN_VALUE;
+        for(int i = 0;i<nums.length;i++){
+            int max = 0;
+            for(int j = i-2;j>=0;j--){
+                max = Math.max(max,dp[j]);
+            }
+            
+            dp[i] = max+nums[i];
+            ans = Math.max(ans,dp[i]);
         }
         
-        for(int i = n-1;i>=0;i--){
-            int max = Integer.MIN_VALUE;
-            for(int j = i+2;j<n;j++){
-                max = Math.max(max,nums[i]+dp[j]);
-            }
-            if(max == Integer.MIN_VALUE){
-                dp[i] = nums[i];
-            }
-            else{
-                dp[i] = max;
-            }
-        }
-        
-        
-        return Math.max(dp[0],dp[1]);
+         return ans;
     }
+    
+    
 }
