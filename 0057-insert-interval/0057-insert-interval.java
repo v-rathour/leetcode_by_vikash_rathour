@@ -1,63 +1,57 @@
 class Solution {
-    public int[][] insert(int[][] intervals, int[] newInterval) {
+    
+    class Pair implements Comparable<Pair>{
         
-        Deque<Integer> st1=new ArrayDeque<>();
-        Deque<Integer> st2=new ArrayDeque<>();
+        int start;
+        int end;
         
-        int num=newInterval[0];
-        int flag=0;
-        for(int []arr:intervals){
-            int first=arr[0];
-            if(flag==0 && first>=num){
-                flag=1;
-                st1.addLast(newInterval[0]);
-                st2.addLast(newInterval[1]);
-            }
-            
-            st1.addLast(arr[0]);
-            st2.addLast(arr[1]);
+        Pair(int start,int end){
+            this.start = start;
+            this.end = end;
         }
         
-        if(flag==0){
-            st1.addLast(newInterval[0]);
-            st2.addLast(newInterval[1]);
+        public int compareTo(Pair obj){
+            return this.start-obj.start;
         }
         
-        List<List<Integer>> list=new ArrayList<>();
-        overlappingIntervals(st1,st2,list);
-        
-        return list.stream()
-                .map(l -> l.stream().mapToInt(Integer::intValue).toArray())
-                .toArray(int[][]::new);
     }
     
-    public void overlappingIntervals(Deque<Integer> st1,Deque<Integer> st2,List<List<Integer>> list){
+    public int[][] insert(int[][] intervals, int[] newInterval) {
         
-        while(st1.size()>=2){
-           int st1_val1=st1.pollFirst();
-           int st2_val1=st2.pollFirst();
-           
-           int st1_val2=st1.pollFirst();
-           int st2_val2=st2.pollFirst();
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+        List<List<Integer>> answer = new ArrayList<>();
+        
+        for(int []a : intervals){
             
-           if(st2_val1>=st1_val2){
-               st1.addFirst(st1_val1);
-               st2.addFirst(Math.max(st2_val1,st2_val2));
-           }
-           else{
-               List<Integer> ll=new ArrayList<>();
-               ll.add(st1_val1);
-               ll.add(st2_val1);
-               list.add(ll);
-               
-               st1.addFirst(st1_val2);
-               st2.addFirst(st2_val2);
-           }
+            int s = a[0];
+            int e = a[1];
+            
+            pq.add(new Pair(s,e));
+            
         }
         
-        List<Integer> ll=new ArrayList<>();
-        ll.add(st1.peek());
-        ll.add(st2.peek());
-        list.add(ll);
+        pq.add(new Pair(newInterval[0],newInterval[1]));
+        
+        while(pq.size()>=2){
+             Pair rem1 = pq.remove();
+             Pair rem2 = pq.remove();
+             // System.out.println(rem1.start+" "+rem1.end);
+             if(rem1.end>=rem2.start){
+                 pq.add(new Pair(rem1.start,Math.max(rem1.end,rem2.end)));
+             }
+            else{
+                
+                answer.add(new ArrayList<>(List.of(rem1.start,rem1.end)));
+                pq.add(rem2);
+            }
+        }
+        
+        Pair rem = pq.remove();
+        answer.add(new ArrayList<>(List.of(rem.start,rem.end)));
+        
+        return answer.stream()
+                .map(l -> l.stream().mapToInt(Integer::intValue).toArray())
+                .toArray(int[][]::new);
+        
     }
 }
