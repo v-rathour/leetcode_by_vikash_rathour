@@ -23,6 +23,7 @@ class Solution {
             
             if(node == b+1){
                 First_b = FirstNode;
+                break;
             }
             node++;
             FirstNode = FirstNode.next;
