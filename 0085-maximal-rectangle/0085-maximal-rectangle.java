@@ -20,10 +20,13 @@ class Solution {
         return ans;
     }
     public int largestRectangleArea(int[] heights) {
+        
         int[] rb=new int[heights.length];
+        
         Stack<Integer> st=new Stack<>();
         st.push(heights.length-1);
         rb[st.peek()]=heights.length;
+        
         for(int i=heights.length-2;i>=0;i--){
             while(st.size()>0 && heights[i]<=heights[st.peek()]){
                 st.pop();
@@ -38,9 +41,11 @@ class Solution {
             st.push(i);
             
         }
+        
         int[] lb=new int[heights.length];
         st=new Stack<>();
         st.push(0);
+        
         lb[0]=-1;
         for(int i=1;i<heights.length;i++){
             while(st.size()>0 && heights[i]<=heights[st.peek()]){
