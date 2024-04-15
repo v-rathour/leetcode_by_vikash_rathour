@@ -14,24 +14,24 @@
  * }
  */
 class Solution {
-    int result=0;
     public int sumNumbers(TreeNode root) {
-        RootToLeafPath(root,"");
-        return result;
+        return TotalSum(root,"");
     }
     
-    public void RootToLeafPath(TreeNode node,String path){
-        if(node==null){
-            return;
-        }
-        if(node.left==null && node.right==null){
-            path +=node.val+"";
-            result +=Integer.parseInt(path);
-            return;
+    public int TotalSum(TreeNode root,String path){
+        if(root == null){
+            return 0;
         }
         
+        if(root.left == null && root.right == null){
+            path += root.val;
+            return Integer.parseInt(path);
+        }
         
-        RootToLeafPath(node.left,path+node.val+"");
-        RootToLeafPath(node.right,path+node.val+"");
+        int ans = 0;
+        int left = TotalSum(root.left,path+root.val);
+        int right = TotalSum(root.right,path+root.val);
+        
+        return left+right;
     }
 }
