@@ -68,7 +68,7 @@ class Solution {
                 
             }
             
-            if(depth == 0){
+            if(depth == k){
                 break;
             }
         }
