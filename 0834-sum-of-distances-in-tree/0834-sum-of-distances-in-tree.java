@@ -25,7 +25,7 @@ class Solution {
     }
     
     public void dfs(int n,int curr,int pre_node,int[] result){
-        
+         
         for(int nbr : adj.get(curr)){
             
             if(nbr == pre_node)
@@ -35,7 +35,7 @@ class Solution {
             dfs(n,nbr,curr,result);
         }
         
-    }
+     }
     
      public int[] sumOfDistancesInTree(int n, int[][] edges) {
      
