@@ -1,21 +1,21 @@
 class Solution {
     public int findTheWinner(int n, int k) {
-        Deque<Integer> dq=new ArrayDeque<>();
-        for(int i=1;i<=n;i++){
-            dq.addLast(i);
+        
+        List<Integer> list = new ArrayList<>();
+        
+        for(int i = 1;i<=n;i++){
+            list.add(i);
         }
-        int j=0;
-        while(dq.size()!=1){
-            int temp=dq.pollFirst();
-            j++;
-            if(j==k){
-               j=0; 
-            }
-            else{
-               dq.addLast(temp); 
-            }
+        int i = 0;
+        while(list.size()>1){
+            int idx = (i+k-1)%list.size();
+            
+            list.remove(idx);
+            i = idx;
+            
         }
         
-        return dq.peek();
+        return list.get(0);
+        
     }
 }
