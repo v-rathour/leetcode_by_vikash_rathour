@@ -1,36 +1,38 @@
 class Solution {
     
+    
     public int nthUglyNumber(int n) {
         
-        int []dp = new int[n];
-        dp[0] = 1;
+        int []arr = new int[n+1];
         
-        int p2 = 0;
-        int p3 = 0;
-        int p5 = 0;
+        int i2 = 1;
+        int i3 = 1;
+        int i5 = 1;
         
-        int k = 1;
-        while(k<n){
-            int a = dp[p2]*2;
-            int b = dp[p3]*3;
-            int c = dp[p5]*5;
+        arr[1] = 1;
+        for(int i = 2;i<=n;i++){
+            int i2uglynumber = arr[i2]*2;
+            int i3uglynumber = arr[i3]*3;
+            int i5uglynumber = arr[i5]*5;
             
-            dp[k] = Math.min(a,Math.min(b,c));
+            int minuglynumber =   Math.min(i2uglynumber,Math.min(i3uglynumber,i5uglynumber));
             
-            if(dp[k] == a){
-                p2++;
-            }
-        
-            if(dp[k] == b){
-                p3++;
+            arr[i] = minuglynumber;
+            
+            if(i2uglynumber == minuglynumber){
+                i2++;
             }
             
-            if(dp[k] == c){
-                p5++;
+            if(i3uglynumber == minuglynumber){
+                i3++;
             }
-            k++;
+            
+            if(i5uglynumber == minuglynumber){
+                i5++;
+            }
         }
         
-        return dp[n-1];
+        return arr[n];
+        
     }
 }
