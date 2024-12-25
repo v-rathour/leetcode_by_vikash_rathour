@@ -15,33 +15,37 @@
  */
 class Solution {
     public List<Integer> largestValues(TreeNode root) {
-        if(root==null){
-             return new ArrayList<>();
+        
+        if(root == null){
+            return new ArrayList<>();
         }
         
-        Queue<TreeNode> mq=new ArrayDeque<>();
-        mq.add(root);
-        List<Integer> result=new ArrayList<>();
-        while(!mq.isEmpty()){
-              int size=mq.size();
-              int max=Integer.MIN_VALUE;
-              for(int i=0;i<size;i++){
-                  TreeNode node=mq.poll();
-                  
-                  max=Math.max(max,node.val);
-                  
-                  if(node.left!=null){
-                      mq.add(node.left);
-                  }
-                  
-                  if(node.right!=null){
-                      mq.add(node.right);
-                  }
-              }
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        List<Integer> list = new ArrayList<>();
+        
+        while(!q.isEmpty()){
+            int max = Integer.MIN_VALUE;
+            int size = q.size();
             
-            result.add(max);
+            for(int i = 0;i<size;i++){
+                
+                TreeNode rem = q.remove();
+                max = Math.max(max,rem.val);
+                
+                if(rem.left != null){
+                    q.add(rem.left);
+                }
+                
+                if(rem.right != null){
+                    q.add(rem.right);
+                }
+            }
+            
+            list.add(max);
+            
         }
         
-        return result;
+        return list;
     }
 }
